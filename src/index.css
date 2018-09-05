@@ -68,3 +68,11 @@ body {
   margin-left: 6px;
   font-weight: bold;
 }
+
+.address-name {
+  padding-left: 0.3em
+}
+
+.address-card {
+  padding-left: 0.3em
+}

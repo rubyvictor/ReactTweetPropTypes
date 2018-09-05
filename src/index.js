@@ -207,4 +207,35 @@ const MoreOptionsButton = () => (
   <i className="fa fa-ellipsis-h more-options-button" />
 );
 
-render(<Tweet tweets={testTweet} />, document.getElementById('root'));
+const Name = ({ name }) => {
+  return <span className="address-name">{name}</span>;
+};
+
+const Address = ({ address }) => {
+  return (
+    <div className="address-card">
+      <div>{address.location}</div>
+      <div>{address.city}</div>
+    </div>
+  );
+};
+
+const testPerson = {
+  name: "person's name",
+  address: {
+    location: '77th Street Lane 2.',
+    city: 'Boston, MA, 22345'
+  }
+};
+
+const AddressLabel = ({ person }) => {
+  return (
+    <div>
+      <Name name={person.name} />
+      <Address address={person.address} />
+    </div>
+  );
+};
+
+// render(<Tweet tweets={testTweet} />, document.getElementById('root'));
+render(<AddressLabel person={testPerson} />, document.getElementById('root'));
