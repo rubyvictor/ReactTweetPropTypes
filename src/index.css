@@ -76,3 +76,37 @@ body {
 .address-card {
   padding-left: 0.3em
 }
+
+.envelope {
+  position: relative;
+  border: 1px solid #ccc;
+  width: 700px;
+  height: 350px;
+}
+
+.stamp {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 70px;
+  height: 80px;
+  border: 1px solid lightsalmon;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #777;
+}
+
+.to-label {
+  position: absolute;
+  left: 280px;
+  top: 150px;
+}
+
+.from-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

@@ -238,15 +238,64 @@ const testPerson = {
   }
 };
 
-const AddressLabel = ({ person }) => {
+const fromMailingLabel = {
+  name: 'From Mr X.',
+  address: {
+    location: '77th Street Lane 2.',
+    city: 'Boston, MA, 22345'
+  }
+};
+
+const toMailingLabel = {
+  name: 'To Miss Y.',
+  address: {
+    location: 'Peking Street Ring 5.',
+    city: 'Beijing, CN, 88444'
+  }
+};
+
+const AddressLabel = ({ person, className }) => {
   const { name, address } = person;
   return (
-    <div>
+    <div className={`${className}`}>
       <Name name={name} />
       <Address address={address} />
     </div>
   );
 };
 
+AddressLabel.propTypes = {
+  person: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    address: PropTypes.shape({
+      location: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired
+    }).isRequired
+  })
+};
+
+const Stamp = () => {
+  return <div className="stamp">Stamp</div>;
+};
+
+const Envelope = ({ toPerson, fromPerson }) => {
+  return (
+    <div className="envelope">
+      <AddressLabel className="from-label" person={fromPerson} />
+      <AddressLabel className="to-label" person={toPerson} />
+      <Stamp />
+    </div>
+  );
+};
+
+Envelope.propTypes = {
+  toPerson: PropTypes.object,
+  fromPerson: PropTypes.object
+};
+
 // render(<Tweet tweets={testTweet} />, document.getElementById('root'));
-render(<AddressLabel person={testPerson} />, document.getElementById('root'));
+// render(<AddressLabel person={testPerson} />, document.getElementById('root'));
+render(
+  <Envelope toPerson={toMailingLabel} fromPerson={fromMailingLabel} />,
+  document.getElementById('root')
+);
