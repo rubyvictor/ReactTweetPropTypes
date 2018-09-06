@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { ReactDOM, render } from 'react-dom';
+import { render } from 'react-dom';
 import isEmpty from 'lodash';
 import PropTypes from 'prop-types';
 import '../src/index.css';
@@ -62,17 +62,26 @@ function Tweet({ tweets }) {
   return (
     <div className="tweet">
       {tweets.map(tweet => {
+        const {
+          id,
+          gravatar,
+          author,
+          timestamp,
+          message,
+          retweets,
+          likes
+        } = tweet;
         return (
-          <div key={tweet.id}>
-            <Avatar hash={tweet.gravatar} />
+          <div key={id}>
+            <Avatar hash={gravatar} />
             <div className="content">
-              <NameWithHandle author={tweet.author} />
-              <Time time={tweet.timestamp} />
-              <Message message={tweet.message} />
+              <NameWithHandle author={author} />
+              <Time time={timestamp} />
+              <Message message={message} />
               <div className="buttons">
                 <ReplyButton />
-                <RetweetButton count={tweet.retweets} />
-                <LikeButton count={tweet.likes} />
+                <RetweetButton count={retweets} />
+                <LikeButton count={likes} />
                 <MoreOptionsButton />
               </div>
             </div>
@@ -212,10 +221,11 @@ const Name = ({ name }) => {
 };
 
 const Address = ({ address }) => {
+  const { location, city } = address;
   return (
     <div className="address-card">
-      <div>{address.location}</div>
-      <div>{address.city}</div>
+      <div>{location}</div>
+      <div>{city}</div>
     </div>
   );
 };
@@ -229,10 +239,11 @@ const testPerson = {
 };
 
 const AddressLabel = ({ person }) => {
+  const { name, address } = person;
   return (
     <div>
-      <Name name={person.name} />
-      <Address address={person.address} />
+      <Name name={name} />
+      <Address address={address} />
     </div>
   );
 };
